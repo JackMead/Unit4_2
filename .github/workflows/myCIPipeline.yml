@@ -1,0 +1,12 @@
+name: myCIPipeline
+on:[push]
+
+branches:
+-main
+jobs: 
+  build:
+runs-on: ubuntu-latest
+
+steps:
+- name: Checkout source code
+  uses: actions/checkout@v2
