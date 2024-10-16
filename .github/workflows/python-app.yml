@@ -31,7 +31,7 @@ jobs:
       run:
         echo "$SSH_PRIVATE_KEY" > private_key.pem &&
         chmod 600 private_key.pem &&
-        ssh -i private_key.pem -o StrictHostKeyChecking=no root@$env.HOST << EOF &&
+        ssh -i private_key.pem -o StrictHostKeyChecking=no root@${{ env.HOST }} << EOF &&
         mkdir -p /home/root/app
         #pkill -f "python3 madlibs.py" || true
         #scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* root@$976bde83453c:/home/root/app
