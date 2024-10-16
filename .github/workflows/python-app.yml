@@ -33,13 +33,13 @@ jobs:
         chmod 600 private_key.pem
         ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
         mkdir -p /home/root/app
-        pkill -f "python3 madlibs.py" || true
-        scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* root@$976bde83453c:/home/root/app
-        ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
-        cd /home/root/app
-        python3 -m pip install flask
-        nohup python3 madlibs.py >> app.log 2>&1 &
-        disown
-        EOF
+        #pkill -f "python3 madlibs.py" || true
+        #scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* root@$976bde83453c:/home/root/app
+        #ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
+        #cd /home/root/app
+        #python3 -m pip install flask
+        #nohup python3 madlibs.py >> app.log 2>&1 &
+        #disown
+        #EOF
       
     
