@@ -18,30 +18,28 @@ jobs:
     runs-on: CentOS8
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
+    
+    - name: Checkout source code
+      uses: actions/checkout@v2
+   
     - name: Deploy to server
       
       env:
-         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-         USERNAME: ${{ secrets.root }}
-         HOST: ${{ secrets.976bde83453c}}
-         
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        USERNAME: ${{ secrets.root }}
+        HOST: ${{ secrets.976bde83453c}} 
       run:
-         echo "$SSH_PRIVATE_KEY" > private_key.pem
-         chmod 600 private_key.pem
-         ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
-         mkdir -p /home/root/app
-         pkill -f "python3 madlibs.py" || true
-         scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* root@$976bde83453c:/home/root/app
-         ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
-         cd /home/root/app
-         python3 -m pip install flask
-         nohup python3 madlibs.py >> app.log 2>&1 &
-         disown
-         EOF
+        echo "$SSH_PRIVATE_KEY" > private_key.pem
+        chmod 600 private_key.pem
+        ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
+        mkdir -p /home/root/app
+        pkill -f "python3 madlibs.py" || true
+        scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* root@$976bde83453c:/home/root/app
+        ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
+        cd /home/root/app
+        python3 -m pip install flask
+        nohup python3 madlibs.py >> app.log 2>&1 &
+        disown
+        EOF
       
     
