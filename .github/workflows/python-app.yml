@@ -26,8 +26,8 @@ jobs:
       
       env:
         SSH_PRIVATE_KEY: ${{ secrets.CIPIEPLINE }}
-        USERNAME: ${{ secrets.root }}
-        HOST: ${{ secrets.976bde83453c}} 
+        USERNAME: ${{ secrets.USER_NAME }}
+        HOST: ${{ secrets.HOST_NAME}} 
       run:
         echo "$SSH_PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
