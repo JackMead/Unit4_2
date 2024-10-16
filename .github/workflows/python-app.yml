@@ -25,14 +25,14 @@ jobs:
         python-version: "3.10"
     - name: Deploy to server
       
-         env:
+      env:
          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
          USERNAME: ${{ secrets.root }}
          HOST: ${{ secrets.976bde83453c}}
          
       run:
-      echo "$SSH_PRIVATE_KEY" > private_key.pem
-      chmod 600 private_key.pem
+         echo "$SSH_PRIVATE_KEY" > private_key.pem
+         chmod 600 private_key.pem
          ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
          mkdir -p /home/root/app
          pkill -f "python3 madlibs.py" || true
