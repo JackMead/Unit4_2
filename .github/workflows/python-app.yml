@@ -35,6 +35,7 @@ jobs:
         ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST <<EOF
         mkdir -p /home/$USERNAME/app 
         pkill -f "python3 madlibs.py" || true
+        mkdir -p /home/$USERNAME/proof
         EOF
     - run: scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* $USERNAME@$HOST:/home/$USERNAME/app
         #ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
