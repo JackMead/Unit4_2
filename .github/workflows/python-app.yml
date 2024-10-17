@@ -8,6 +8,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,7 +33,8 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > private_key.pem &&
         chmod 600 private_key.pem &&
         ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST <<EOF
-          mkdir -p /home/$USERNAME/app >>EOF
+          mkdir -p /home/$USERNAME/app 
+        EOF
         scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* $USERNAME@$HOST:/home/$USERNAME/app
         #ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
         #cd /home/root/app
