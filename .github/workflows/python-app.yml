@@ -34,12 +34,12 @@ jobs:
         ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST <<EOF
           mkdir -p /home/$USERNAME/app >>EOF
         scp -i private_key.pem -o StrictHostKeyChecking=no -r ./* $USERNAME@$HOST:/home/$USERNAME/app
-        #ssh -i private_key.pem -o StrictHostKeyChecking=no root@$976bde83453c << EOF
-        #cd /home/root/app
-        #python3 -m pip install flask
-        #nohup python3 madlibs.py >> app.log 2>&1 &
-        #disown
-        #pkill -f "python3 madlibs.py" || true
-        #EOF
+        ssh -i private_key.pem -o StrictHostKeyChecking=no $USERNAME@$HOST << EOF
+        cd /home/$USERNAME@/app
+        python3 -m pip install flask
+        nohup python3 madlibs.py >> app.log 2>&1 &
+        disown
+        pkill -f "python3 madlibs.py" || true
+        EOF
       
     
