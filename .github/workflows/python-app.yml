@@ -26,7 +26,7 @@ jobs:
     - name: Deploy to server
       
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.CIPIEPLINE }}
+        SSH_PRIVATE_KEY: ${{ secrets.CIPIPELINE }}
         USERNAME: ${{ secrets.USER_NAME }}
         HOST: ${{ secrets.HOST_NAME}} 
       run:
